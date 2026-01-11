@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#667eea">
+    <title>Dart Score Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Dart Score Tracker</h1>
+            <div class="game-selector">
+                <button class="game-btn active" data-game="501">501</button>
+                <button class="game-btn" data-game="301">301</button>
+            </div>
+        </header>
+
+        <div class="player-setup" id="playerSetup">
+            <h2>Game Setup</h2>
+            <div class="setup-step">
+                <label for="numPlayers" class="select-label">Number of Players</label>
+                <select id="numPlayers" class="player-select">
+                    <option value="2">2 Players</option>
+                    <option value="3">3 Players</option>
+                    <option value="4">4 Players</option>
+                    <option value="5">5 Players</option>
+                </select>
+            </div>
+            <div class="input-group" id="playersInputGroup">
+                <!-- Player inputs will be generated dynamically -->
+            </div>
+            <button class="btn-primary" id="startGame">Start Game</button>
+        </div>
+
+        <div class="game-container" id="gameContainer" style="display: none;">
+            <div class="current-player-indicator">
+                <span id="currentPlayerName"></span>'s Turn
+            </div>
+
+            <div class="score-display" id="scoreDisplay">
+                <!-- Player scores will be generated dynamically -->
+            </div>
+
+            <div class="toast-container" id="toastContainer"></div>
+
+            <div class="winning-options" id="winningOptions" style="display: none;">
+                <h3>Winning Options:</h3>
+                <div id="optionsList"></div>
+            </div>
+
+            <div class="dart-input">
+                <div class="input-mode-indicator">
+                    <span id="inputMode">Single Mode</span>
+                    <span class="darts-remaining">Darts: <span id="dartsRemaining">3</span>/3</span>
+                </div>
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="single" id="singleMode">Single</button>
+                    <button class="mode-btn" data-mode="double" id="doubleMode">Double</button>
+                    <button class="mode-btn" data-mode="triple" id="tripleMode">Triple</button>
+                </div>
+                <div class="number-selector">
+                    <div class="number-grid">
+                        <button class="number-btn" data-value="20">20</button>
+                        <button class="number-btn" data-value="19">19</button>
+                        <button class="number-btn" data-value="18">18</button>
+                        <button class="number-btn" data-value="17">17</button>
+                        <button class="number-btn" data-value="16">16</button>
+                        <button class="number-btn" data-value="15">15</button>
+                        <button class="number-btn" data-value="14">14</button>
+                        <button class="number-btn" data-value="13">13</button>
+                        <button class="number-btn" data-value="12">12</button>
+                        <button class="number-btn" data-value="11">11</button>
+                        <button class="number-btn" data-value="10">10</button>
+                        <button class="number-btn" data-value="9">9</button>
+                        <button class="number-btn" data-value="8">8</button>
+                        <button class="number-btn" data-value="7">7</button>
+                        <button class="number-btn" data-value="6">6</button>
+                        <button class="number-btn" data-value="5">5</button>
+                        <button class="number-btn" data-value="4">4</button>
+                        <button class="number-btn" data-value="3">3</button>
+                        <button class="number-btn" data-value="2">2</button>
+                        <button class="number-btn" data-value="1">1</button>
+                    </div>
+                    <div class="special-buttons">
+                        <button class="special-btn bull-single" data-value="25" data-multiplier="1">Single Bull</button>
+                        <button class="special-btn bull-double" data-value="25" data-multiplier="2">Double Bull</button>
+                        <button class="special-btn miss" data-value="0" data-multiplier="1">Miss</button>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-danger" id="undoDart">↶ Undo</button>
+                    <button class="btn-secondary" id="endTurn">End Turn</button>
+                </div>
+            </div>
+
+            <div class="turn-history" id="turnHistory">
+                <h3>This Turn</h3>
+                <div id="currentTurnDarts"></div>
+                <div class="turn-total" id="turnTotal"></div>
+            </div>
+
+            <div class="game-actions">
+                <button class="btn-secondary" id="newGame">New Game</button>
+                <button class="btn-secondary" id="viewHistory">View History</button>
+            </div>
+        </div>
+
+        <div class="history-modal" id="historyModal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <h2>Game History</h2>
+                <div class="player-stats" id="playerStats"></div>
+                <h3 style="margin-top: 20px;">Recent Games</h3>
+                <div id="historyList"></div>
+            </div>
+        </div>
+
+        <div class="game-over-modal" id="gameOverModal" style="display: none;">
+            <div class="modal-content">
+                <h2>🎉 Game Over!</h2>
+                <p id="winnerMessage"></p>
+                <button class="btn-primary" id="playAgain">Play Again</button>
+                <button class="btn-secondary" id="newGameFromWin">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
